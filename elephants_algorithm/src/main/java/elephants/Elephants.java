@@ -19,6 +19,34 @@ public class Elephants {
 
 	private boolean[] checked; // booleans will be used to indicate whether the elephant was checked or it still
 								// should change it's position
+	
+	
+	
+	public void loadDatafromInputStream(InputStreamReader inputStreamReader) {
+
+		Scanner scanner = new Scanner(inputStreamReader);
+
+		this.nElephants = scanner.nextInt();
+
+		this.weights = new int[this.nElephants];
+		this.origSequence = new int[this.nElephants];
+		this.permutations = new int[this.nElephants];
+
+		for (int i = 0; i < this.nElephants; i++) {
+			this.weights[i] = scanner.nextInt();
+		}
+
+		for (int i = 0; i < this.nElephants; i++) {
+			this.origSequence[i] = scanner.nextInt() - 1;
+		}
+
+		for (int i = 0; i < this.nElephants; i++) {
+			this.permutations[scanner.nextInt() - 1] = this.origSequence[i];
+		}
+
+		scanner.close();
+	}
+	
 
 	/*
 	 * Method extract the data from the file and and assign it to the corresponding
