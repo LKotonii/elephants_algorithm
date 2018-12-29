@@ -78,5 +78,23 @@ class ElephantsTest {
 
 	}
 	
+	@ParameterizedTest(name = "fileName= {0}, output= {1}")
+	@CsvFileSource(resources = "/test_data.csv", numLinesToSkip = 1)
+	public void should_CountMinCost_basedOn_InputStreamData(String filename, String output) throws FileNotFoundException {
+		
+		// given
+		File inputFile = new File(projectPath + "testFiles/in/" + filename);
+		InputStream testInputStream = new FileInputStream(inputFile);
+		
+		Elephants testElephants = new Elephants();
+		long desiredOutput = Long.parseLong(output);
+		
+		// when
+		testElephants.loadDatafromInputStream(new InputStreamReader(testInputStream));
+		long testResult = testElephants.countMinCost();
+
+		//  then 
+		assertEquals(testResult, desiredOutput);
+	}
 	
 }
